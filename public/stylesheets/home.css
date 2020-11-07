@@ -1,0 +1,122 @@
+*{
+    direction: rtl;
+}
+body{
+    background: url(../images/Background.png);
+    background-size: cover;
+    overflow-x: hidden;
+    
+    direction: rtl;
+}   
+
+
+.trans-nav{
+    background: transparent !important;
+}
+.navbar-brand{
+    color: white !important;
+    font-size: 38px !important;
+}
+.main-butt a{
+    width:160px ;
+    height: 44px;
+    border-radius: 20px;
+    outline: none !important;
+    background-color: rgba(0, 0,0, 0.6);
+    color: white !important;
+    border: none;
+    font-weight: bolder;
+    font-size: 20px;
+    text-align: center;
+    
+}
+.log-butt a{
+    width:170px;
+    text-align: center;
+    height:44px ;
+    border-radius: 10px;
+    outline: none !important;
+    background-color:#5D19C5;
+    color: white !important;
+    border: none;
+    font-weight: bolder;
+    font-size: 20px;
+    box-shadow: 2px 1px #26045D;
+}
+.log-butt a:hover {
+    background-color: #26045D;
+    transition: 1s;
+}
+
+.log-butt a:active {
+  background-color: #5D19C5;
+  box-shadow: 0 2px  darkblue;
+  transform: translateY(4px);
+  transition: 0.1s;
+}
+
+
+.classes a{
+    transition: all 0.5s;
+    height: 50px;
+    text-align: center;
+    border: darkblue 2px solid;
+    margin-bottom: 30px!important;
+    background-color:#26045D ;
+    color: white;
+    font-weight: bolder;
+    margin-bottom: 30px;
+    display: block;
+    margin: auto;
+    outline: none;
+    width:400px;
+    border-radius: 30px;
+    padding: 10px;
+    box-shadow: 2px 1px #26045D;
+    
+
+}
+.section2{
+    margin-top: 10%;
+}
+ .button span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+  }
+  
+  .button span:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+  }
+  
+  .button:hover span {
+    padding-right: 25px;
+  }
+  
+  .button:hover span:after{
+    opacity: 1;
+    right: 0;
+  }
+.notice-box{
+    
+    background-color:rgba(0, 0,0, 0.5);
+    text-align: center;
+    margin: auto;
+    height: 300px;
+    align-items: center;
+    padding: 40px;
+    width: 400px;
+    align-items: center;
+    
+}
+
+.notice-box #notice-title,p{
+    color: white;
+}
+
