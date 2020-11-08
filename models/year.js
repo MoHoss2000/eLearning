@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const yearSchema = mongoose.Schema({
+const yearSchema = new mongoose.Schema({
 
     _id: { type: String },
     name: { type: String, required: true },
@@ -16,4 +16,9 @@ const yearSchema = mongoose.Schema({
 
 })
 
-module.exports = yearSchema;
+module.exports = {
+    Year9: mongoose.model("Year9", yearSchema),
+    Year10: mongoose.model("Year10", yearSchema), 
+    Year11: mongoose.model("Year11", yearSchema), 
+    Year12: mongoose.model("Year12", yearSchema)
+}

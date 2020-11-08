@@ -17,7 +17,7 @@
         <div class="navbar-expand-sm navbar-collapse" id="">
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                 <li class="">
-                    <a class="nav-link" href="./">
+                    <a class="nav-link" href="../">
                         <button class="btn bg-blue whiteColor">الرئيسية</button>
                     </a>
                 </li>
@@ -30,26 +30,20 @@
         <!--Side Navigation-->
         <div class="col-md-3 col-12 bg-lightGrey sider py-3">
             <div class="row">
-                <% for(var i=0; i < lectures.length; i++) { %>
-               
-                    <div class="col-md-12 bt btn bg-blue col-5 mx-1 text-center mt-2">
-                        <span class="whiteColor"><%= lectures[i].name  %> </span>
-                    </div>
- 
-                <% } %>
+                <% if(lectures.length == 0) {%>
+                <div class="alert alert-info" role="alert">
+                    No lectures available
+                </div>
+                <% }   else { %>
+                <%
+                     for(var i=0; i < lectures.length; i++) { %>
 
-                <!-- <div class="col-md-12 bt btn bg-blue col-5 mx-1 text-center mt-2">
-                        <span class="whiteColor">الحصة الأولي</span>
-                    </div>
-                    <div class="col-md-12 bt btn bg-blue col-5 mx-1 text-center mt-2">
-                        <span class="whiteColor">الحصة الثانية</span>
-                    </div>
-                    <div class="col-md-12  bt btn bg-blue col-5 mx-1 text-center mt-2">
-                        <span class="whiteColor">الحصة الثالثة</span>
-                    </div>
-                    <div  class="col-md-12 btn bt col-5 mx-1 bg-blue text-center mt-2">
-                        <span class="whiteColor">الحصة الرابعة</span>
-                    </div> -->
+                <div class="col-md-12 bt btn bg-blue col-5 mx-1 text-center mt-2">
+                    <span class="whiteColor"><%= lectures[i].name  %> </span>
+                </div>
+
+                <% }} %>
+
             </div>
         </div>
         <div class="col-md-9 col-12 sidel">

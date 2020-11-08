@@ -12,9 +12,6 @@ var lecturesRouter = require('./routes/lectures');
 
 var app = express();
 
-const Year = require("./models/year");
-
-const Year9 = Year.year9;
 
 mongoose.connect("mongodb+srv://mido:1234@cluster0-vjex6.gcp.mongodb.net/elearning", { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log("DB Connected"))
