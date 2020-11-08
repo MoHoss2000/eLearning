@@ -12,9 +12,30 @@ var lecturesRouter = require('./routes/lectures');
 
 var app = express();
 
+const Year = require("./models/year");
+
+const Year9 = Year.year9;
+
 mongoose.connect("mongodb+srv://mido:1234@cluster0-vjex6.gcp.mongodb.net/elearning", { useNewUrlParser: true, useUnifiedTopology: true })
-    .then(() => console.log("DB Connected"))
-    .catch(() => console.log("DB connection failed"));
+  .then(() => console.log("DB Connected"))
+  .catch(() => console.log("DB connection failed"));
+
+// newLect = new Year9({
+
+//   "name": "lect1",
+//   "time": 25,
+//   "link": "dada",
+//   "codes": [
+//     {
+//       "_id": "Dadada",
+//       "used": false,
+
+//     }
+//   ]
+// })
+
+// newLect.save();
+
 
 
 // view engine setup
@@ -33,12 +54,12 @@ app.use('/lectures', lecturesRouter);
 
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   next(createError(404));
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
