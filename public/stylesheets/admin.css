@@ -1,0 +1,138 @@
+body{
+    height: 100vh;
+    width: 100%;
+    direction: rtl;
+    background-color: rgba(0, 0, 0, 0.79);
+}
+
+
+
+.bg-black{
+    background-color: rgba(0, 0, 0, 0.34);
+}
+.bg-white{
+    background-color: white;
+}
+.bg-blue{
+    background-color: rgba(17, 17, 113, 1) !important;
+}
+.bg-trans{
+    background-color: transparent !important;
+}
+.bg-maroon{
+    background-color: rgba(135, 0, 0, 1);
+}
+
+
+nav{
+    direction: rtl;
+}
+.navbar{
+    flex-wrap: nowrap !important;
+}
+.navbar-brand{
+    color: white !important;
+    font-weight: bolder !important;
+    font-size: 1rem;
+}
+nav button{
+    color: white;
+    font-weight: bold;
+    transition-duration: 0.4s;
+}
+nav button:hover{
+    background-color: white !important; /* Green */
+    color: black;
+}
+
+
+.navs{
+    flex-wrap:  wrap !important;
+
+}
+.navs div{
+    margin-top: 10px;
+}
+.navs button{
+    border: 2px solid white;
+    color: white;
+    font-weight: bold;
+    transition-duration: 0.4s;
+}
+.navs button:hover{
+    background-color: rgba(17, 17, 113, 1) !important;
+}
+
+
+
+.addlec{
+    position: fixed;
+    bottom: 3%;
+    left: 9%;
+}
+.addlec button{
+    color: white;
+    font-weight: bold;
+    transition-duration: 0.4s;
+}
+.addlec button:hover{
+    background-color: white !important; /* Green */
+    color: black;
+}
+
+
+
+.cards{
+    /* Add shadows to create the "card" effect */
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+}
+.cards:hover {
+box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}  
+.cardsbg{
+    border-radius: 5px;
+}
+
+
+
+
+.lightboxContainer{
+    direction: ltr;
+    width: 100%;
+    height: 0;
+    position: fixed;
+    top: -200%;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+.lightboxContainer .lightboxItem{
+    width: 70%;
+    height: fit-content;
+    background-color: lightgray;
+
+}
+
+.lightboxItem form label{
+    color: black;
+    font-weight: bold;
+
+}
+form .button button{
+    color: white;
+    font-weight: bold;
+}
+.exit{
+    width: 100%;
+}
+.exit *{
+    position: absolute;
+    right: 15%;
+}
+.iconify{
+    font-size: 2rem !important;
+    cursor: pointer;
+}
+

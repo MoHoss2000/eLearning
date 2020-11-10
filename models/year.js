@@ -1,8 +1,6 @@
 const mongoose = require("mongoose");
 
 const yearSchema = new mongoose.Schema({
-
-    _id: { type: String },
     name: { type: String, required: true },
     link: { type: String, required: true },
     time: { type: Number, default: 24 },
