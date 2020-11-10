@@ -38,7 +38,7 @@
                 <%
                      for(var i=0; i < lectures.length; i++) { %>
 
-                <div class="col-md-12 bt btn bg-blue col-5 mx-1 text-center mt-2">
+                <div onclick = "changeLink('<%= lectures[i].link %>')" class="col-md-12 bt btn bg-blue col-5 mx-1 text-center mt-2">
                     <span class="whiteColor"><%= lectures[i].name  %> </span>
                 </div>
 
@@ -52,6 +52,7 @@
                     id="code" type="text" name="code" required="">
                 <input type="submit" class="btn btn-primary" name="submit" id="login" value="ابدأ">
             </form>
+
         </div>
     </section>
 

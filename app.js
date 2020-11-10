@@ -1,14 +1,18 @@
+require('dotenv').config();
+
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
+var bodyParser = require('body-parser');
 var logger = require('morgan');
 const mongoose = require('mongoose');
-
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var lecturesRouter = require('./routes/lectures');
+var loginRouter = require('./routes/login');
+var adminRouter = require('./routes/admin');
 
 var app = express();
 
@@ -16,22 +20,6 @@ var app = express();
 mongoose.connect("mongodb+srv://mido:1234@cluster0-vjex6.gcp.mongodb.net/elearning", { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log("DB Connected"))
   .catch(() => console.log("DB connection failed"));
-
-// newLect = new Year9({
-
-//   "name": "lect1",
-//   "time": 25,
-//   "link": "dada",
-//   "codes": [
-//     {
-//       "_id": "Dadada",
-//       "used": false,
-
-//     }
-//   ]
-// })
-
-// newLect.save();
 
 
 
@@ -48,6 +36,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/lectures', lecturesRouter);
+app.use('/login', loginRouter);
+app.use('/admin', adminRouter);
 
 
 // catch 404 and forward to error handler
