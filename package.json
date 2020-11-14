@@ -13,11 +13,16 @@
     "dotenv": "^8.2.0",
     "ejs": "~2.6.1",
     "express": "~4.16.1",
+    "express-flash": "0.0.2",
+    "fs": "0.0.1-security",
     "http-errors": "~1.6.3",
     "jsonwebtoken": "^8.5.1",
+    "log4js": "^6.3.0",
+    "moment": "^2.29.1",
     "mongoose": "^5.10.13",
     "morgan": "~1.9.1",
     "node-code-generator": "^1.0.3",
-    "nodemon": "^2.0.6"
+    "nodemon": "^2.0.6",
+    "req-flash": "0.0.3"
   }
 }

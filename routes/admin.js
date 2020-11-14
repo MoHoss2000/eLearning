@@ -6,13 +6,13 @@ const mongoose = require("mongoose");
 var CodeGenerator = require("node-code-generator")
 const { Code } = require('bson');
 
+
 /* GET home page. */
 router.get('/', verifyToken, function (req, res, next) {
   res.redirect('/admin/year9')
 });
 
 router.get('/:year', verifyToken, async function (req, res, next) {
-  console.log(req.params.year);
   var lectures;
   switch (req.params.year) {
     case "year9": lectures = await Year9.find(); break;
@@ -32,7 +32,7 @@ router.post('/add', verifyToken, async function (req, res, next) {
   var codeNo = req.body.codes;
 
   var codes = generateCodes(codeNo);
-  console.log(codes);
+
   newLecture = {
     name: name,
     link: link,
@@ -71,7 +71,7 @@ function verifyToken(req, res, next) {
     next();
   }
   catch (e) {
-    res.redirect('login');
+    res.redirect('/login');
   }
 }
 

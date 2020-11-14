@@ -10,6 +10,20 @@
     <link rel="stylesheet" href="/stylesheets/lectures.css">
 </head>
 
+<script>
+    // stringify the data passed from router to ejs (within the EJS template only)
+    var allLectures = '<%- JSON.stringify(lectures) %>';
+    allLectures = JSON.parse(allLectures);
+
+    var error = '<%= error %>';
+    console.log(error);
+
+    if(error != ""){
+        alert(error);
+    }
+
+</script>
+
 <body>
     <!--NavBar-->
     <nav class="navbar navbar-expand-sm navbar-light bg-grey">
@@ -35,10 +49,10 @@
                     No lectures available
                 </div>
                 <% }   else { %>
-                <%
+                <% 
                      for(var i=0; i < lectures.length; i++) { %>
 
-                <div onclick = "changeLink('<%= lectures[i].link %>')" class="col-md-12 bt btn bg-blue col-5 mx-1 text-center mt-2">
+                <div onclick="requiredLecture = allLectures[<%=i%>]" class="col-md-12 bt btn bg-blue col-5 mx-1 text-center mt-2">
                     <span class="whiteColor"><%= lectures[i].name  %> </span>
                 </div>
 
@@ -47,19 +61,22 @@
             </div>
         </div>
         <div class="col-md-9 col-12 sidel">
-            <form id="logform" class="blackbg">
+            <form target="_blank" method="POST" action="" id="logform" class="blackbg">
                 <label for="code" id="lc">ادخل الكود&nbsp;</label><input placeholder="ادخل  الكود" class="form-control"
                     id="code" type="text" name="code" required="">
-                <input type="submit" class="btn btn-primary" name="submit" id="login" value="ابدأ">
+                <input type="submit" class="btn btn-primary" value="ابدأ" id="login">
+
+
             </form>
 
         </div>
     </section>
 
+ 
     <!--  js files -->
     <script src="/javascripts/bootstrap.bundle.min.js"></script>
     <script src="/javascripts/jquery-3.5.1.min.js"></script>
-    <script src="/javascripts/lectures.js"></script>
+    <script src="/javascripts/lectures.js"></script> 
 </body>
 
 </html>

@@ -16,7 +16,7 @@
         <div class="navbar-expand-sm navbar-collapse" id="">
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                 <li class="">
-                    <a class="nav-link" href="../">
+                    <a class="nav-link" href="/logout">
                         <button class="btn bg-blue">LogOut</button>
                     </a>
                 </li>
@@ -43,10 +43,10 @@
     <section class="lectures  container mt-5">
         <div class="row ">
             <% if(lectures.length == 0) {%>
-                <div class="alert alert-info" role="alert">
-                    No lectures available
-                </div>
-            <% } %> 
+            <div class="alert alert-info" role="alert">
+                No lectures available
+            </div>
+            <% } %>
             <%
             for(var i=0; i < lectures.length; i++) { %>
             <div class="col-md-4 cards p-3">

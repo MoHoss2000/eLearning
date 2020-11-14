@@ -5,14 +5,17 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var logger = require('morgan');
+// var logger = require('morgan');
 const mongoose = require('mongoose');
+// const flash = require('express-flash');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var lecturesRouter = require('./routes/lectures');
 var loginRouter = require('./routes/login');
+var logoutRouter = require('./routes/logout');
 var adminRouter = require('./routes/admin');
+var lectureRouter = require('./routes/lecture');
 
 var app = express();
 
@@ -21,6 +24,14 @@ mongoose.connect("mongodb+srv://mido:1234@cluster0-vjex6.gcp.mongodb.net/elearni
   .then(() => console.log("DB Connected"))
   .catch(() => console.log("DB connection failed"));
 
+const log4js = require('log4js');
+
+log4js.configure({
+  appenders: { everything: { type: 'file', filename: 'logs.log' } },
+  categories: { default: { appenders: ['everything'], level: 'ALL' } }
+});
+
+const logger = log4js.getLogger();
 
 
 // view engine setup
@@ -31,13 +42,16 @@ app.set('view engine', 'ejs');
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+// app.use(flash());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter); 
+app.use('/users', usersRouter);
 app.use('/admin', adminRouter);
 app.use('/lectures', lecturesRouter);
 app.use('/login', loginRouter);
+app.use('/logout', logoutRouter);
+app.use('/lecture', lectureRouter);
 
 
 // catch 404 and forward to error handler
@@ -57,4 +71,4 @@ app.use(function (err, req, res, next) {
 });
 
 
-app.listen(3000);
+app.listen(process.env.PORT || 3000);

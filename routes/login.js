@@ -5,8 +5,8 @@ const Admin = require("../models/admin");
 const jwt = require("jsonwebtoken");
 
 /* GET home page. */
-router.get('/', function (req, res) {
-  res.render('login');
+router.get('/', verifyToken, function (req, res) {
+  res.render('login', { error: '' });
 })
 
 router.post('/', async function (req, res) {
@@ -17,7 +17,7 @@ router.post('/', async function (req, res) {
   let admin = admins[0];
 
   if (!user || !pass || user != admin._id || pass != admin.password) {
-    return res.status(401).send();
+    return res.render('login', { error: "Invalid username/password" })
   }
 
   payload = {};
@@ -28,27 +28,27 @@ router.post('/', async function (req, res) {
   })
 
   //send the access token to the client inside a cookie
-  res.cookie("jwt", accessToken, { secure: false, httpOnly: true });
-  res.redirect('/admin')
+  res.cookie("jwt", accessToken, { secure: false, httpOnly: true, expires: new Date(Date.now() + 10800000) });
+  res.redirect('/admin');
 })
 
-// function verifyToken(req, res, next) {
-//   let accessToken = req.cookies.jwt
-//   console.log(accessToken)
-//   if (!accessToken) {
-//     res.redirect('login');
-//   }
+function verifyToken(req, res, next) {
+  let accessToken = req.cookies.jwt
 
-//   let payload;
-//   try {
-//     payload = jwt.verify(accessToken, process.env.ACCESS_TOKEN_SECRET)
-//     res.redirect('admin');
-//     next();
-//   }
-//   catch (e) {
-//     res.redirect('login');
-//   }
-// }
+  if (!accessToken) {
+    return next();
+  }
+
+  let payload;
+  try {
+    payload = jwt.verify(accessToken, process.env.ACCESS_TOKEN_SECRET)
+    res.redirect('admin');
+  }
+  catch (e) {
+    next();
+  }
+
+}
 
 
 
