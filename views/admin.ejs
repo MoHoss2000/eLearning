@@ -2,121 +2,199 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>السعيد في اللغة العربية</title>
-    <link rel="stylesheet" href="/stylesheets/normalize.css">
-    <link rel="stylesheet" href="/stylesheets/bootstrap.min.css">
-    <link rel="stylesheet" href="/stylesheets/admin.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>السعيد في اللغة العربية</title>
+  <link rel="stylesheet" href="/stylesheets/normalize.css" />
+  <link rel="stylesheet" href="/stylesheets/bootstrap.min.css" />
+  <link rel="stylesheet" href="/stylesheets/admin.css" />
 </head>
 
+<script>
+  year = '<%= year %>'
+</script>
+
 <body>
-    <nav class="navbar navbar-expand-sm navbar-light bg-maroon">
-        <a class="navbar-brand whiteColor" href="#">السعيد في اللغة العربية</a>
-        <div class="navbar-expand-sm navbar-collapse" id="">
-            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                <li class="">
-                    <a class="nav-link" href="/logout">
-                        <button class="btn bg-blue">LogOut</button>
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </nav>
+  <nav class="navbar navbar-expand-sm navbar-light bg-maroon">
+    <a class="navbar-brand whiteColor" href="#">السعيد في اللغة العربية</a>
+    <div class="navbar-expand-sm navbar-collapse" id="">
+      <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+        <li class="">
+          <a class="nav-link" href="/logout">
+            <button class="btn bg-blue">LogOut</button>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
 
-    <section class="nav2 w-100 bg-black p-3">
-        <div class="navs d-flex justify-content-center">
-            <div class="butt"> <a href="/admin/year9"><button class="btn bg-trans mr-2">الصف الثالث
-                        الاعدادي</button></a>
-            </div>
-            <div class="butt"> <a href="/admin/year10"><button class="btn bg-trans mr-2">الصف الأول الثانوي</button></a>
-            </div>
-            <div class="butt"> <a href="/admin/year11"><button class="btn bg-trans mr-2">الصف الثاني
-                        الثانوي</button></a>
-            </div>
-            <div class="butt"> <a href="/admin/year12"><button class="btn bg-trans mr-2">الصف الثالث
-                        الثانوي</button></a>
-            </div>
-        </div>
-    </section>
+  <section class="nav2 w-100 bg-black p-3">
+    <div class="navs d-flex justify-content-center">
+      <div class="butt">
+        <a href="/admin/year9"><button class="btn bg-trans mr-2">الصف الثالث الاعدادي</button></a>
+      </div>
+      <div class="butt">
+        <a href="/admin/year10"><button class="btn bg-trans mr-2">الصف الأول الثانوي</button></a>
+      </div>
+      <div class="butt">
+        <a href="/admin/year11"><button class="btn bg-trans mr-2">الصف الثاني الثانوي</button></a>
+      </div>
+      <div class="butt">
+        <a href="/admin/year12"><button class="btn bg-trans mr-2">الصف الثالث الثانوي</button></a>
+      </div>
+    </div>
+  </section>
 
-    <section class="lectures  container mt-5">
-        <div class="row ">
-            <% if(lectures.length == 0) {%>
-            <div class="alert alert-info" role="alert">
-                No lectures available
-            </div>
-            <% } %>
-            <%
-            for(var i=0; i < lectures.length; i++) { %>
-            <div class="col-md-4 cards p-3">
-                <div class="bg-white cardsbg p-4">
-                    <div class="lectureName text-center">
-                        <h3><%=lectures[i].name%></h3>
-                    </div>
-                    <div class="info">
-                        <div><b>link:</b> <%= lectures[i].link %></div>
-                        <div><b>time:</b> <%= lectures[i].time %> </div>
-                        <div><b>count:</b> <%= lectures[i].codes.length %></div>
-                    </div>
-                </div>
-            </div>
+  <section class="lectures container mt-5">
+    <div class="row">
+      <% if(lectures.length == 0) {%>
+      <div class="alert alert-info" role="alert">No lectures available</div>
+      <% } %> <% for(var i=0; i < lectures.length; i++) { %>
+      <div class="col-md-4 cards p-3">
+        <div class="bg-white cardsbg p-4">
+          <div class="serach d-flex">
+            <span class="iconify" data-icon="dashicons:search" data-inline="false"></span>
+          </div>
+          <div class="lectureName text-center">
+            <h3><%=lectures[i].name%></h3>
+          </div>
+          <div class="info">
+            <div><b>link:</b> <%= lectures[i].link %></div>
+            <div><b>time:</b> <%= lectures[i].time %></div>
+            <div><b>count:</b> <%= lectures[i].codes.length %></div>
+          </div>
+          <div class="icons d-flex">
+            <form method="POST" action='/admin/delete/<%= year %>/<%= lectures[i]._id %>  '>
+              <div class="delete">
+                <button type="submit">
+                  <span class="iconify" data-icon="ic:baseline-delete" data-inline="false"></span>
+                </button>
 
-            <% } %>
+              </div>
 
-        </div>
-    </section>
-
-    <section class="addlec">
-        <button class="btn bg-blue" id="addLecture">Add Lecture</button>
-    </section>
-
-    <section class="lightboxContainer d-flex justify-content-center align-items-center">
-        <div class="lightboxItem">
-            <div class="exit">
-                <span class="iconify" data-icon="bx:bxs-x-circle" data-inline="false"
-                    style="color: rgba(17, 17, 113, 1);"></span>
-            </div>
-            <form method="POST" action="/admin/add/" class="container p-4">
-                <div class="grade">
-                    <label for="" class="">Grade:</label>
-                    <select class="form-control" id="grade" name="grade">
-                        <option selected disabled>Grades</option>
-                        <option>Year 9</option>
-                        <option>Year 10</option>
-                        <option>Year 11</option>
-                        <option>Year 12</option>
-                    </select>
-                </div>
-                <div class="name">
-                    <label for="" class="pt-4">Name:</label>
-                    <input required type="text" name="name" id="lectName" class="form-control">
-                </div>
-                <div class="link">
-                    <label for="" class="pt-4">Link:</label>
-                    <input required type="url" name="link" id="lectLink" class="form-control">
-                </div>
-                <div class="time">
-                    <label for="" class="pt-4">Time:</label>
-                    <input required type="number" name="time" id="lectTime" class="form-control">
-                </div>
-                <div class="codes">
-                    <label for="" class="pt-4">Codes:</label>
-                    <input required type="number" name="codes" id="lectCodes" class="form-control">
-                </div>
-                <div class="button">
-                    <button type="submit" class="btn mt-4 bg-blue">Send</button>
-                </div>
             </form>
+
+            <section class="editFormContainer d-flex justify-content-center align-items-center">
+              <div class="editFormItem">
+                <div class="exit">
+                  <span class="iconify" data-icon="bx:bxs-x-circle" data-inline="false"
+                    style="color: rgba(17, 17, 113, 1)"></span>
+                </div>
+                <form method="POST" action="/admin/update/<%= year %>/<%= lectures[i]._id %>" class="container p-4">
+                  <div class="name">
+                    <label for="" class="pt-4">Name:</label>
+                    <input required type="text" name="name" value="<%= lectures[i].name %> "
+                      class="form-control" />
+                  </div>
+                  <div class="link">
+                    <label for="" class="pt-4">Link:</label>
+                    <input required type="url" name="link" value="<%= lectures[i].link %>"
+                      class="form-control" />
+                  </div>
+                  <div class="time">
+                    <label for="" class="pt-4">Time:</label>
+                    <input required type="number" name="time" value="<%= lectures[i].time %>"
+                      class="form-control" />
+                  </div>
+                  <div class="button">
+                    <button type="submit" class="btn mt-4 bg-blue">Update</button>
+                  </div>
+                </form>
+              </div>
+            </section>
+
+            <section class="searchContainer d-flex justify-content-center align-items-center">
+              <div class="searchItem">
+                <div class="exit">
+                  <span class="iconify" data-icon="bx:bxs-x-circle" data-inline="false"
+                    style="color: rgba(17, 17, 113, 1)"></span>
+                </div>
+                <div class="wrap">
+                  <div class="search">
+                    <input type="text" id="searchTerm" class="searchTerm" placeholder="Write Code Here." />
+                    <button onclick="lectureID = '<%= lectures[i]._id %>'" type="submit" class="searchButton">
+                      <span class="iconify" data-icon="ant-design:search-outlined" data-inline="false"></span>
+                    </button>
+
+                  </div>
+
+                  <div id="searchForm" class="mt-1">
+                    <form method="POST" action="/admin/updateCode/<%= year %>/<%= lectures[i]._id %>">
+                      <input style="display: none;" name="code" id="changedCode" value="">
+                      <select name="used" id="code">
+                        <option value="true">true</option>
+                        <option value="false">false</option>
+                      </select>
+
+                      <input type="submit" class="btn mt-1" value="Update ">
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <div class="edit">
+
+              <span class="iconify" data-icon="clarity:edit-solid" data-inline="false"></span>
+
+            </div>
+          </div>
         </div>
-    </section>
+      </div>
+
+      <% } %>
+    </div>
+  </section>
+
+  <section class="addlec">
+    <button class="btn bg-blue" id="addLecture">Add Lecture</button>
+  </section>
+
+  <section class="lightboxContainer d-flex justify-content-center align-items-center">
+    <div class="lightboxItem">
+      <div class="exit">
+        <span class="iconify" data-icon="bx:bxs-x-circle" data-inline="false"
+          style="color: rgba(17, 17, 113, 1)"></span>
+      </div>
+      <form method="POST" action="/admin/add/" class="container p-4">
+        <div class="grade">
+          <label for="" class="">Grade:</label>
+          <select required class="form-control" id="grade" name="grade">
+            <option selected false></option>
+            <option>Year 9</option>
+            <option>Year 10</option>
+            <option>Year 11</option>
+            <option>Year 12</option>
+          </select>
+        </div>
+        <div class="name">
+          <label for="" class="pt-4">Name:</label>
+          <input required type="text" name="name" id="lectName" class="form-control" />
+        </div>
+        <div class="link">
+          <label for="" class="pt-4">Link:</label>
+          <input required type="url" name="link" id="lectLink" class="form-control" />
+        </div>
+        <div class="time">
+          <label for="" class="pt-4">Time:</label>
+          <input required type="number" name="time" id="lectTime" class="form-control" />
+        </div>
+        <div class="codes">
+          <label for="" class="pt-4">Codes:</label>
+          <input required type="number" name="codes" id="lectCodes" class="form-control" />
+        </div>
+        <div class="button">
+          <button type="submit" class="btn mt-4 bg-blue">Send</button>
+        </div>
+      </form>
+    </div>
+  </section>
 
 
 
-
-    <script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
-    <script src="/javascripts/jquery-3.5.1.min.js"></script>
-    <script src="/javascripts/admin.js"></script>
+  <script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
+  <script src="/javascripts/jquery-3.5.1.min.js"></script>
+  <script src="/javascripts/admin.js"></script>
 </body>
 
 </html>

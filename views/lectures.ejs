@@ -32,7 +32,7 @@
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                 <li class="">
                     <a class="nav-link" href="../">
-                        <button class="btn bg-blue whiteColor">الرئيسية</button>
+                        <button class="btn bg-blue ">الرئيسية</button>
                     </a>
                 </li>
             </ul>
@@ -40,7 +40,7 @@
     </nav>
 
     <!--body-->
-    <section class="row">
+    <section class="row mainRow">
         <!--Side Navigation-->
         <div class="col-md-3 col-12 bg-lightGrey sider py-3">
             <div class="row">
@@ -52,8 +52,8 @@
                 <% 
                      for(var i=0; i < lectures.length; i++) { %>
 
-                <div onclick="requiredLecture = allLectures[<%=i%>]" class="col-md-12 bt btn bg-blue col-5 mx-1 text-center mt-2">
-                    <span class="whiteColor"><%= lectures[i].name  %> </span>
+                <div onclick="requiredLecture = allLectures[<%=i%>]" class="col-md-12 bt btn  col-5 mx-1 text-center mt-2">
+                    <span class=""><%= lectures[i].name  %> </span>
                 </div>
 
                 <% }} %>

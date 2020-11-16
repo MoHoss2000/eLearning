@@ -1,21 +1,25 @@
-*{
-    direction: rtl;
-}
-body{
-    background: url(../images/Background.png);
+body,html{
+    background: url(../images/Background.png) fixed center center no-repeat;
     background-size: cover;
     overflow-x: hidden;
-    
     direction: rtl;
 }   
 
-
+.navbar{
+  background-color: transparent !important;
+}
+.navbar .collapsing,
+.navbar .show {
+    background:rgba(0, 0, 0, 0.7) !important;
+    padding: 20px 10px 20px 10px;
+    text-align: center;
+}
 .trans-nav{
     background: transparent !important;
 }
 .navbar-brand{
     color: white !important;
-    font-size: 38px !important;
+    font-size: 2rem;
 }
 .main-butt a{
     width:160px ;
@@ -55,7 +59,9 @@ body{
   transition: 0.1s;
 }
 
-
+nav ul {
+  padding: 0;
+}
 .classes a{
     transition: all 0.5s;
     height: 50px;
@@ -69,15 +75,15 @@ body{
     display: block;
     margin: auto;
     outline: none;
-    width:400px;
     border-radius: 30px;
     padding: 10px;
     box-shadow: 2px 1px #26045D;
-    
+    width: 80%;
 
 }
 .section2{
     margin-top: 10%;
+    direction: rtl;
 }
  .button span {
     cursor: pointer;
@@ -108,10 +114,9 @@ body{
     background-color:rgba(0, 0,0, 0.5);
     text-align: center;
     margin: auto;
-    height: 300px;
+    width: 80%;
     align-items: center;
     padding: 40px;
-    width: 400px;
     align-items: center;
     
 }
@@ -120,3 +125,19 @@ body{
     color: white;
 }
 
+
+@media (max-width: 780px){
+  .classes a{
+    font-size: 12px;
+    font-weight: bolder;
+  }
+  .notice-box{
+    font-size: 12px;
+  }
+  .notice-box h4{
+    font-size: 20px;
+  }
+  .navbar-brand{
+    font-size: 1.3rem;
+}
+}

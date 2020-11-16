@@ -120,6 +120,86 @@ box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
     font-weight: bold;
 
 }
+
+.editFormContainer{
+    direction: ltr;
+    width: 100%;
+    height: 0;
+    position: fixed;
+    top: -200%;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+.editFormContainer .editFormItem{
+    width: 70%;
+    height: fit-content;
+    background-color: lightgray;
+
+}
+
+.editFormItem form label{
+    color: black;
+    font-weight: bold;
+
+}
+
+
+.searchContainer{
+    direction: ltr;
+    width: 100%;
+    height: 0;
+    position: fixed;
+    top: -200%;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+.searchContainer .searchItem{
+    width: 70%;
+    height: fit-content;
+    background-color: transparent;
+
+}
+.search {
+    width: 100%;
+    position: relative;
+    display: flex;
+  }
+
+  .searchItem .exit .iconify{
+      color: white !important;
+      top: 40%;
+
+  }
+  .searchTerm {
+    width: 100%;
+    border: 3px solid blue;
+    border-right: none;
+    padding: 5px;
+    border-radius: 5px 0 0 5px;
+    outline: none;
+    color: #393d3b;
+  }
+  
+  .searchTerm:focus{
+    color: #000000;
+  }
+  
+  .searchButton {
+    width: 40px;
+    border: 1px solid blue;
+    background-color: blue;
+    text-align: center;
+    color: #fff;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    font-size: 20px;
+  }
+  
+
 form .button button{
     color: white;
     font-weight: bold;
@@ -136,3 +216,13 @@ form .button button{
     cursor: pointer;
 }
 
+.cards .delete .iconify{
+    color: red;
+}
+.cards .edit .iconify{
+    color: blue;
+}
+
+/* #searchForm{
+    visibility: hidden;
+} */

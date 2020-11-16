@@ -1,98 +1,112 @@
-:root{
-    --grey: rgba(71, 71, 71, 1);
-    --lightgrey: rgba(71, 71, 71, 0.88);
-    --blue: rgba(17, 17, 113, 1);
+:root {
+  --grey: rgba(71, 71, 71, 1);
+  --lightgrey: rgba(71, 71, 71, 0.88);
+  --blue: rgba(17, 17, 113, 1);
 }
 
-*{
-    direction: rtl;
+* {
+  direction: rtl;
 }
-
-
+body{
+  height: 100vh;
+}
+nav button {
+  color: white;
+  font-weight: 900 !important;
+  transition-duration: 0.4s;
+}
+nav button:hover {
+  background-color: white !important; /* Green */
+  color: black !important;
+}
 /* color classes */
-.bg-grey{
-    background-color: var(--grey);
+.bg-grey {
+  background-color: var(--grey);
 }
-.bg-lightGrey{
-    background-color: var(--lightgrey);
+.bg-lightGrey {
+  background-color: var(--lightgrey);
 }
-.bg-blue{
-    background-color: var(--blue);
+.bg-blue {
+  background-color: var(--blue);
 }
-.whiteColor{
-    color: white !important;
-    font-weight: bold;
+.whiteColor {
+  color: white !important;
+  font-weight: bold;
 }
-
 
 /* navbar css */
 
-
-
-
-
+/* Sider Navigation */
+.row {
+  margin: 0;
+}
+.sider {
+  height: 88.8vh;
+}
+.sider .bt {
+  background-color: var(--blue);
+  color: white;
+  font-weight: 900 !important;
+  transition-duration: 0.4s;
+  font-weight: bold;
+}
+.sider .bt:hover {
+  background-color: white !important; /* Green */
+  color: black !important;
+}
 
 /* Sider Navigation */
-.row{
-    margin: 0;
-}
-.sider{
-    height: 88vh;
-}
-.sider button{
-    width: 80%;
-    color: white;
-    font-weight: bold;
+.sidel {
+  background: url(../images/Background.png);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
-/* Sider Navigation */
-.sidel{
-    background: url(../images/Background.png);
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-
-form{
-    padding: 20% 10%;
-    text-align: right;
-    color: lightgray;
+form {
+  padding: 20% 10%;
+  text-align: right;
+  color: lightgray;
 }
 #lc {
-    color: white;
-    font-weight: bolder;
-    font-size: larger;
-    background-color: #007bff;
-    border-radius: 10px;
-    padding: 10px;
+  color: white;
+  font-weight: bolder;
+  font-size: larger;
+  background-color: #007bff;
+  border-radius: 10px;
+  padding: 10px;
 }
 
 form #code {
-    margin: 10px 0;
+  margin: 10px 0;
 }
 
-#logform{
-    transition: all ease-in 2s;
+#logform {
+  transition: all ease-in 2s;
 
-    transform: translateY(-150%);
+  transform: translateY(-150%);
 }
-
-
 /* mediaQ */
-@media screen and (max-width: 770px){
-    .navbar-brand{
-        font-size: 1rem !important;
-    }
-    .sider{
-        height: 100%;
-    }
-    .sidel{
-        height: 73vh;
-    }
-    .sider button{
-        font-size: 0.8rem;
-    }
-    .navbar{
-        flex-wrap: nowrap !important;
-    }
+@media screen and (max-width: 767px) {
+  .navbar-brand {
+    font-size: 1rem !important;
+  }
+  .sider {
+    height: 100%;
+  }
+  .sidel {
+    height: 88.8vh;
+  }
+  .sider button {
+    font-size: 0.8rem;
+  }
+  .navbar {
+    flex-wrap: nowrap !important;
+  }
+}
+@media (max-width: 390px){
+  .sidel {
+
+      height: 83vh !important;
+  }
 }
