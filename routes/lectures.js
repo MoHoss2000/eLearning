@@ -59,6 +59,7 @@ router.post('/:year/:id', async function (req, res, next) {
   var codes = [3];
   codes = lecture.codes;
   var codeFound = false;
+  var remainingTime;
 
   codes.forEach(function (object, index) {
 
