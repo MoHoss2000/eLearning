@@ -106,7 +106,7 @@ router.post('/:year/:id', async function (req, res, next) {
   console.log(typeof remainingTime)
   console.log(codeFound);
 
-  if (typeof remainingTime !== 'undefined') {
+  if (typeof remainingTime !== 'undefined' && codeFound) {
     res.render('lecture', { remainingTime: remainingTime, link })
   } else if(!codeFound && typeof remainingTime === 'undefined'){
     res.redirect(`/error?message=الكود غير صحيح`) 
