@@ -5,7 +5,6 @@ const { Year9, Year10, Year11, Year12 } = require('../models/year');
 const mongoose = require("mongoose");
 var CodeGenerator = require("node-code-generator")
 const { Code } = require('bson');
-var secret = "swsh23hjddnns";
 
 
 /* GET home page. */
@@ -44,10 +43,10 @@ router.post('/add', verifyToken, async function (req, res, next) {
   redirectPath = "";
   try {
     switch (grade) {
-      case "Year 9": redirectPath = "year9"; await Year9.create(newLecture); break;
-      case "Year 10": redirectPath = "year10"; await Year10.create(newLecture); break;
-      case "Year 11": redirectPath = "year11"; await Year11.create(newLecture); break;
-      case "Year 12": redirectPath = "year12"; await Year12.create(newLecture); break;
+      case "الصف الثالث الاعدادي": redirectPath = "year9"; await Year9.create(newLecture); break;
+      case "الصف الأول الثانوي": redirectPath = "year10"; await Year10.create(newLecture); break;
+      case "الصف الثاني الثانوي": redirectPath = "year11"; await Year11.create(newLecture); break;
+      case "الصف الثالث الثانوي": redirectPath = "year12"; await Year12.create(newLecture); break;
     }
 
     res.redirect(`/admin/${redirectPath}`);
@@ -185,7 +184,7 @@ function verifyToken(req, res, next) {
 
   let payload;
   try {
-    payload = jwt.verify(accessToken, secret)
+    payload = jwt.verify(accessToken, process.env.ACCESS_TOKEN_SECRET)
     next();
   }
   catch (e) {

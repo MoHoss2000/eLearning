@@ -30,7 +30,7 @@ router.post('/', async function (req, res) {
   })
 
   //send the access token to the client inside a cookie
-  res.cookie("jwt", accessToken, { secure: true, httpOnly: true, expires: new Date(Date.now() + 10800000) });
+  res.cookie("jwt", accessToken, { secure: false, httpOnly: true, expires: new Date(Date.now() + 10800000) });
   res.redirect('/admin');
 })
 

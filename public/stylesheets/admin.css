@@ -131,6 +131,7 @@ box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
     left: 0;
     right: 0;
     background-color: rgba(0, 0, 0, 0.6);
+    z-index: 1000;
 }
 .editFormContainer .editFormItem{
     width: 70%;
@@ -171,7 +172,7 @@ box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 
   .searchItem .exit .iconify{
       color: white !important;
-      top: 40%;
+      top: 29%;
 
   }
   .searchTerm {
@@ -223,6 +224,6 @@ form .button button{
     color: blue;
 }
 
-/* #searchForm{
-    visibility: hidden;
-} */
+ #searchForm{
+    display: none;
+} 

@@ -38,17 +38,16 @@ $('.searchButton').click(() => {
             if (response['message'] == 'Success') {
                 document.getElementById('changedCode').value = document.getElementById('searchTerm').value;
                 document.getElementById('code').value = response['used']
-                $('#searchForm').css('visibility', 'visisble')
+                $('#searchForm').css("display" , "block");
             }
             else alert('Code not found');
         },
         error: function (response) {
             alert("Server error");
         },
-
-
-
     })
+
+
 
 })
 

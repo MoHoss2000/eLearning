@@ -44,6 +44,8 @@ router.post('/:year/:id', async function (req, res, next) {
   var id = req.params.id;
   var code = req.body.code;
   var lecture;
+  var uuid = req.body.uuid;
+  console.log(uuid);
 
   switch (req.params.year) {
     case "year9": lecture = await Year9.findById(id); break;
@@ -63,7 +65,6 @@ router.post('/:year/:id', async function (req, res, next) {
     if (object._id == code) {
       time = lecture.time;
       timeStarted = object.timeUsed;
-      console.log(timeStarted)
 
       Date.prototype.addHours = function (h) {
         this.setTime(this.getTime() + (h * 60 * 60 * 1000));
@@ -72,7 +73,7 @@ router.post('/:year/:id', async function (req, res, next) {
 
       var expiryTime = new Date(timeStarted.getTime());
       expiryTime.addHours(time);
-      
+
       console.log(expiryTime);
       // expiryTime.addHours(time);
 
@@ -80,12 +81,13 @@ router.post('/:year/:id', async function (req, res, next) {
 
       codeFound = true;
 
-
       if (object.used == true && expired) {
-        return res.redirect(`/lectures/${req.params.year}/الكود منتهي`);
+        return res.redirect(`/error?message=الكود منتهي`);
       } else if (object.used == true && !expired) {
+        if (uuid != object.uuid)
+          return res.redirect(`/error?message=لا يمكن استخدام الكود على هذا الجهاز`)
       } else {
-
+        object.uuid = uuid;
         object.used = true;
         object.timeUsed = new Date();
         expiryTime = new Date().addHours(time);
@@ -101,7 +103,14 @@ router.post('/:year/:id', async function (req, res, next) {
 
   await lecture.updateOne({ $set: { codes: codes } });
 
-  codeFound ? res.render('lecture', { remainingTime: remainingTime, link }) : res.redirect(`/lectures/${req.params.year}/invalid-code`);
+  console.log(typeof remainingTime)
+  console.log(codeFound);
+
+  if (typeof remainingTime !== 'undefined') {
+    res.render('lecture', { remainingTime: remainingTime, link })
+  } else if(!codeFound && typeof remainingTime === 'undefined'){
+    res.redirect(`/error?message=الكود غير صحيح`) 
+  }
 
 });
 

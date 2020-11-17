@@ -19,6 +19,7 @@ var loginRouter = require('./routes/login');
 var logoutRouter = require('./routes/logout');
 var adminRouter = require('./routes/admin');
 var lectureRouter = require('./routes/lecture');
+var errorRouter = require('./routes/error');
 
 var app = express();
 
@@ -57,6 +58,7 @@ app.use('/lectures', lecturesRouter);
 app.use('/login', loginRouter);
 app.use('/logout', logoutRouter);
 app.use('/lecture', lectureRouter);
+app.use('/error', errorRouter);
 
 
 // catch 404 and forward to error handler
@@ -76,23 +78,23 @@ app.use(function (err, req, res, next) {
 });
 
 
-const privateKey = fs.readFileSync('/etc/letsencrypt/live/mostafafarid.com/privkey.pem', 'utf8');
-const certificate = fs.readFileSync('/etc/letsencrypt/live/mostafafarid.com/cert.pem', 'utf8');
-const ca = fs.readFileSync('/etc/letsencrypt/live/mostafafarid.com/chain.pem', 'utf8');
+// const privateKey = fs.readFileSync('/etc/letsencrypt/live/mostafafarid.com/privkey.pem', 'utf8');
+// const certificate = fs.readFileSync('/etc/letsencrypt/live/mostafafarid.com/cert.pem', 'utf8');
+// const ca = fs.readFileSync('/etc/letsencrypt/live/mostafafarid.com/chain.pem', 'utf8');
 
-const credentials = {
-    key: privateKey,
-    cert: certificate,
-    ca: ca
-};
+// const credentials = {
+//     key: privateKey,
+//     cert: certificate,
+//     ca: ca
+// };
 
-// var httpServer = http.createServer(app);
-var httpsServer = https.createServer(credentials, app);
+// // var httpServer = http.createServer(app);
+// var httpsServer = https.createServer(credentials, app);
 
-// httpServer.listen(8080);
-httpsServer.listen(443 || process.env.PORT);
-
-
+// // httpServer.listen(8080);
+// httpsServer.listen(443 || process.env.PORT);
 
 
-// app.listen(process.env.PORT || 80);
+
+
+app.listen(process.env.PORT || 80);
