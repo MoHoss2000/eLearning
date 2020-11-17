@@ -3,7 +3,7 @@ var router = express.Router();
 
 const Admin = require("../models/admin");
 const jwt = require("jsonwebtoken");
-  var secret = "swsh23hjddnns";
+var secret = "swsh23hjddnns";
 
 
 /* GET home page. */
@@ -40,7 +40,6 @@ function verifyToken(req, res, next) {
   if (!accessToken) {
     return next();
   }
-
 
   let payload;
   try {

@@ -5,6 +5,7 @@ const { Year9, Year10, Year11, Year12 } = require('../models/year');
 const mongoose = require("mongoose");
 var CodeGenerator = require("node-code-generator")
 const { Code } = require('bson');
+var secret = "swsh23hjddnns";
 
 
 /* GET home page. */
@@ -184,7 +185,7 @@ function verifyToken(req, res, next) {
 
   let payload;
   try {
-    payload = jwt.verify(accessToken, process.env.ACCESS_TOKEN_SECRET)
+    payload = jwt.verify(accessToken, secret)
     next();
   }
   catch (e) {
