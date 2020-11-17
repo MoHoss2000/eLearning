@@ -7,6 +7,9 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 // var logger = require('morgan');
 const mongoose = require('mongoose');
+const fs = require('fs');
+// const http = require('http');
+const https = require('https');
 // const flash = require('express-flash');
 
 var indexRouter = require('./routes/index');
@@ -25,6 +28,8 @@ mongoose.connect("mongodb+srv://mido:1234@cluster0-vjex6.gcp.mongodb.net/elearni
   .catch(() => console.log("DB connection failed"));
 
 const log4js = require('log4js');
+const { Http2ServerRequest } = require('http2');
+const { request } = require('http');
 
 log4js.configure({
   appenders: { everything: { type: 'file', filename: 'logs.log' } },
@@ -71,4 +76,23 @@ app.use(function (err, req, res, next) {
 });
 
 
-app.listen(process.env.PORT || 80);
+const privateKey = fs.readFileSync('/etc/letsencrypt/live/mostafafarid.com/privkey.pem', 'utf8');
+const certificate = fs.readFileSync('/etc/letsencrypt/live/mostafafarid.com/cert.pem', 'utf8');
+const ca = fs.readFileSync('/etc/letsencrypt/live/mostafafarid.com/chain.pem', 'utf8');
+
+const credentials = {
+    key: privateKey,
+    cert: certificate,
+    ca: ca
+};
+
+// var httpServer = http.createServer(app);
+var httpsServer = https.createServer(credentials, app);
+
+// httpServer.listen(8080);
+httpsServer.listen(443 || process.env.PORT);
+
+
+
+
+// app.listen(process.env.PORT || 80);
