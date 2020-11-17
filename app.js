@@ -78,9 +78,9 @@ app.use(function (err, req, res, next) {
 });
 
 
-const privateKey = fs.readFileSync('/etc/letsencrypt/live/mostafafarid.com/privkey.pem', 'utf8');
-const certificate = fs.readFileSync('/etc/letsencrypt/live/mostafafarid.com/cert.pem', 'utf8');
-const ca = fs.readFileSync('/etc/letsencrypt/live/mostafafarid.com/chain.pem', 'utf8');
+const privateKey = fs.readFileSync('/etc/letsencrypt/live/saiedaladly.com/privkey.pem', 'utf8');
+const certificate = fs.readFileSync('/etc/letsencrypt/live/saiedaladly.com/cert.pem', 'utf8');
+const ca = fs.readFileSync('/etc/letsencrypt/live/saiedaladly.com/chain.pem', 'utf8');
 
 const credentials = {
     key: privateKey,
