@@ -3,6 +3,8 @@ var router = express.Router();
 
 const Admin = require("../models/admin");
 const jwt = require("jsonwebtoken");
+  var secret = "swsh23hjddnns";
+
 
 /* GET home page. */
 router.get('/', verifyToken, function (req, res) {
@@ -22,7 +24,7 @@ router.post('/', async function (req, res) {
 
   payload = {};
 
-  let accessToken = jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET, {
+  let accessToken = jwt.sign(payload, secret, {
     algorithm: "HS256",
     expiresIn: '3h'
   })
@@ -39,7 +41,6 @@ function verifyToken(req, res, next) {
     return next();
   }
 
-  var secret = "swsh23hjddnns"
 
   let payload;
   try {
