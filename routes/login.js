@@ -39,9 +39,11 @@ function verifyToken(req, res, next) {
     return next();
   }
 
+  var secret = "swsh23hjddnns"
+
   let payload;
   try {
-    payload = jwt.verify(accessToken, process.env.ACCESS_TOKEN_SECRET)
+    payload = jwt.verify(accessToken, secret)//process.env.ACCESS_TOKEN_SECRET)
     res.redirect('admin');
   }
   catch (e) {

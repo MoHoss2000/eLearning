@@ -9,7 +9,8 @@ const yearSchema = new mongoose.Schema({
             _id: { type: String, required: true },
             used: { type: Boolean, default: false },
             timeUsed: { type: Date, default: Date.now },
-            timeCreated: {type: Date, default: Date.now }
+            timeCreated: {type: Date, default: Date.now },
+            uuid: {type:String, default: ""}
         }
     ]
 
