@@ -90,7 +90,7 @@ router.post('/update/:year/:id', verifyToken, async function (req, res, next) {
   try {
     switch (grade) {
       case "year9": redirectPath = "year9"; await Year9.findByIdAndUpdate(id, { name: name, link: link, time: time }, { useFindAndModify: false }); break;
-      case "year10": redirectPath = "year10"; await findByIdAndUpdate(id, { name: name, link: link, time: time }, { useFindAndModify: false }); break;
+      case "year10": redirectPath = "year10"; await Year10.findByIdAndUpdate(id, { name: name, link: link, time: time }, { useFindAndModify: false }); break;
       case "year11": redirectPath = "year11"; await Year11.findByIdAndUpdate(id, { name: name, link: link, time: time }, { useFindAndModify: false }); break;
       case "year12": redirectPath = "year12"; await Year12.findByIdAndUpdate(id, { name: name, link: link, time: time }, { useFindAndModify: false }); break;
     }
