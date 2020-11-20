@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>السعيد في اللغة العربية</title>
+
+</head>
+
+
+<body class="w-100">
+    <script>
+
+
+        function exportJSONToCSV(objArray) {
+            var arr = typeof objArray !== 'object' ? JSON.parse(objArray) : objArray;
+            var str =
+                `${Object.keys(arr[0])
+                    .map((value) => `"${value}"`)
+                    .join(',')}` + '\r\n';
+            var csvContent = arr.reduce((st, next) => {
+                st +=
+                    `${Object.values(next)
+                        .map((value) => `"${value}"`)
+                        .join(',')}` + '\r\n';
+                return st;
+            }, str);
+            var element = document.createElement('a');
+            element.href = 'data:text/csv;charset=utf-8,' + encodeURI(csvContent);
+            element.target = '_blank';
+            element.download = '<%= grade %>-<%= name%>.csv';
+            element.click();
+        }
+
+        var codes = '<%- JSON.stringify(codes) %>';
+        exportJSONToCSV(codes);
+
+        // codes = JSON.parse(codes);
+        // console.log(codes);
+        // console.log(arrayToCSV(codes));
+
+        // const rows = [
+        //     ["name1", "city1", "some other info"],
+        //     ["name2", "city2", "more info"]
+        // ];
+
+
+        // let csvContent = "data:text/csv;charset=utf-8,"
+        //     + rows.map(e => e.join(",")).join("\n");
+
+        // var encodedUri = encodeURI(csvContent);
+        // var link = document.createElement("a");
+        // link.setAttribute("href", encodedUri);
+        // link.setAttribute("download", "my_data.csv");
+        // document.body.appendChild(link); // Required for FF
+
+        // link.click(); //
+    </script>
+
+    <script src="/javascripts/codes.js"></script>
+</body>
+
+</html>

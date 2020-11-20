@@ -90,7 +90,7 @@ router.post('/update/:year/:id', verifyToken, async function (req, res, next) {
   try {
     switch (grade) {
       case "year9": redirectPath = "year9"; await Year9.findByIdAndUpdate(id, { name: name, link: link, time: time }, { useFindAndModify: false }); break;
-      case "year10": redirectPath = "year10"; await Year10.findByIdAndUpdate(id, { name: name, link: link, time: time }, { useFindAndModify: false }); break;
+      case "year10": redirectPath = "year10"; await findByIdAndUpdate(id, { name: name, link: link, time: time }, { useFindAndModify: false }); break;
       case "year11": redirectPath = "year11"; await Year11.findByIdAndUpdate(id, { name: name, link: link, time: time }, { useFindAndModify: false }); break;
       case "year12": redirectPath = "year12"; await Year12.findByIdAndUpdate(id, { name: name, link: link, time: time }, { useFindAndModify: false }); break;
     }
@@ -107,7 +107,7 @@ router.post('/code/:year/:id', verifyToken, async function (req, res, next) {
   var id = req.params.id;
   var code = req.body.code;
   var lecture;
-
+  console.log(id)
   try {
     switch (grade) {
       case "year9": lecture = await Year9.findById(id); break;
@@ -122,6 +122,7 @@ router.post('/code/:year/:id', verifyToken, async function (req, res, next) {
     var found = codes.find(function (element) {
       return element._id == code;
     });
+
 
     if (found == undefined)
       // return res.status(300).send('Code not found');
@@ -148,14 +149,16 @@ router.post('/updateCode/:year/:id', verifyToken, async function (req, res, next
   var used = req.body.used;
   var redirectPath = "";
 
+
+
   console.log(`${code}   ${used}`)
 
   try {
     switch (grade) {
-      case "year9": redirectPath="year9"; lecture = await Year9.findById(id); break;
-      case "year10": redirectPath="year10"; lecture = await Year10.findById(id); break;
-      case "year11": redirectPath="year11"; lecture = await Year11.findById(id); break;
-      case "year12": redirectPath="year12";  lecture = await Year12.findById(id); break;
+      case "year9": redirectPath = "year9"; lecture = await Year9.findById(id); break;
+      case "year10": redirectPath = "year10"; lecture = await Year10.findById(id); break;
+      case "year11": redirectPath = "year11"; lecture = await Year11.findById(id); break;
+      case "year12": redirectPath = "year12"; lecture = await Year12.findById(id); break;
     }
 
     // var codes = [1]
@@ -168,7 +171,64 @@ router.post('/updateCode/:year/:id', verifyToken, async function (req, res, next
     codes[index].used = used;
 
     await lecture.updateOne({ $set: { codes: codes } });
-    
+
+    res.redirect(`/admin/${redirectPath}`);
+  }
+  catch (e) {
+    res.status(401).send();
+  }
+});
+
+router.get('/printCodes/:year/:id', verifyToken, async function (req, res, next) {
+  var grade = req.params.year;
+  var id = req.params.id;
+  var redirectPath = "";
+
+  try {
+    switch (grade) {
+      case "year9": redirectPath = "year9"; lecture = await Year9.findById(id); break;
+      case "year10": redirectPath = "year10"; lecture = await Year10.findById(id); break;
+      case "year11": redirectPath = "year11"; lecture = await Year11.findById(id); break;
+      case "year12": redirectPath = "year12"; lecture = await Year12.findById(id); break;
+    }
+    var codes = lecture.codes;
+
+    codes.forEach(function (object, index) {
+      console.log(object)
+    })
+
+    res.render('codes', { codes, grade, name: lecture.name });
+    // res.redirect(`/admin/${redirectPath}`);
+  }
+  catch (e) {
+    res.status(401).send();
+  }
+});
+
+router.post('/addCodes/:year/:id', verifyToken, async function (req, res, next) {
+  var grade = req.params.year;
+  var id = req.params.id;
+  var redirectPath = "";
+  var count = req.body.count;
+
+
+  try {
+    switch (grade) {
+      case "year9": redirectPath = "year9"; lecture = await Year9.findById(id); break;
+      case "year10": redirectPath = "year10"; lecture = await Year10.findById(id); break;
+      case "year11": redirectPath = "year11"; lecture = await Year11.findById(id); break;
+      case "year12": redirectPath = "year12"; lecture = await Year12.findById(id); break;
+    }
+
+    var codes = lecture.codes;
+
+    var newCodes = generateCodes(count);
+    codes = codes.concat(newCodes);
+
+    console.log(newCodes);
+    await lecture.updateOne({ $set: { codes: codes } });
+
+
     res.redirect(`/admin/${redirectPath}`);
   }
   catch (e) {
@@ -206,5 +266,7 @@ function generateCodes(n) {
   }
   return arr;
 }
+
+
 
 module.exports = router;

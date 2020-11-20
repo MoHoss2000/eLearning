@@ -133,6 +133,8 @@ box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
     background-color: rgba(0, 0, 0, 0.6);
     z-index: 1000;
 }
+
+
 .editFormContainer .editFormItem{
     width: 70%;
     height: fit-content;
@@ -227,3 +229,25 @@ form .button button{
  #searchForm{
     display: none;
 } 
+
+.link{
+    word-wrap    : break-word;
+
+}
+.addContainer{
+    direction: ltr;
+    width: 100%;
+    height: 0;
+    position: fixed;
+    top: -200%;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+.addContainer .addItem{
+    width: 70%;
+    height: fit-content;
+    background-color: lightgray;
+
+}
