@@ -77,6 +77,15 @@ app.use(function (err, req, res, next) {
   res.render('error');
 });
 
+var http = express();
+http.get('*', function(req, res) {  
+  res.redirect('https://' + req.headers.host + req.url);
+
+})
+
+// have it listen on 8080
+http.listen(8080);
+
 
 const privateKey = fs.readFileSync('/etc/letsencrypt/live/saiedaladly.com/privkey.pem', 'utf8');
 const certificate = fs.readFileSync('/etc/letsencrypt/live/saiedaladly.com/cert.pem', 'utf8');
