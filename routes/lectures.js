@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 
 const bodyParser = require("body-parser");
 const yearSchema = require('../models/year');
-const { Year9, Year10, Year11, Year12 } = require('../models/year');
+const { Year9, Year10, Year11, Year12, IG } = require('../models/year');
 
 async function getLectures(year) {
   switch (year) {
@@ -12,6 +12,7 @@ async function getLectures(year) {
     case "year10": lectures = await Year10.find(); break;
     case "year11": lectures = await Year11.find(); break;
     case "year12": lectures = await Year12.find(); break;
+    case "IG": lectures = await IG.find(); break;
   }
 
   lectures = lectures.map(obj => {
@@ -52,6 +53,7 @@ router.post('/:year/:id', async function (req, res, next) {
     case "year10": lecture = await Year10.findById(id); break;
     case "year11": lecture = await Year11.findById(id); break;
     case "year12": lecture = await Year12.findById(id); break;
+    case "IG": lecture = await IG.findById(id); break;
   }
 
   var link = lecture.link;

@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var jwt = require('jsonwebtoken')
-const { Year9, Year10, Year11, Year12 } = require('../models/year');
+const { Year9, Year10, Year11, Year12, IG } = require('../models/year');
 const mongoose = require("mongoose");
 var CodeGenerator = require("node-code-generator")
 const { Code } = require('bson');
@@ -20,6 +20,7 @@ router.get('/:year', verifyToken, async function (req, res, next) {
     case "year10": lectures = await Year10.find(); break;
     case "year11": lectures = await Year11.find(); break;
     case "year12": lectures = await Year12.find(); break;
+    case "IG": lectures = await IG.find(); break;
   }
 
   res.render('admin', { lectures: lectures, year: req.params.year });
@@ -48,6 +49,7 @@ router.post('/add', verifyToken, async function (req, res, next) {
       case "الصف الأول الثانوي": redirectPath = "year10"; await Year10.create(newLecture); break;
       case "الصف الثاني الثانوي": redirectPath = "year11"; await Year11.create(newLecture); break;
       case "الصف الثالث الثانوي": redirectPath = "year12"; await Year12.create(newLecture); break;
+      case "IG": redirectPath = "IG"; await IG.create(newLecture); break;
     }
 
     res.redirect(`/admin/${redirectPath}`);
@@ -69,6 +71,7 @@ router.post('/delete/:year/:id', verifyToken, async function (req, res, next) {
       case "year10": redirectPath = "year10"; await Year10.findByIdAndDelete(id); break;
       case "year11": redirectPath = "year11"; await Year11.findByIdAndDelete(id); break;
       case "year12": redirectPath = "year12"; await Year12.findByIdAndDelete(id); break;
+      case "IG": redirectPath = "IG"; await IG.findByIdAndDelete(id); break;
     }
 
     res.redirect(`/admin/${redirectPath}`);
@@ -93,6 +96,7 @@ router.post('/update/:year/:id', verifyToken, async function (req, res, next) {
       case "year10": redirectPath = "year10"; await Year10.findByIdAndUpdate(id, { name: name, link: link, time: time }, { useFindAndModify: false }); break;
       case "year11": redirectPath = "year11"; await Year11.findByIdAndUpdate(id, { name: name, link: link, time: time }, { useFindAndModify: false }); break;
       case "year12": redirectPath = "year12"; await Year12.findByIdAndUpdate(id, { name: name, link: link, time: time }, { useFindAndModify: false }); break;
+      case "IG": redirectPath = "IG"; await IG.findByIdAndUpdate(id, { name: name, link: link, time: time }, { useFindAndModify: false }); break;
     }
 
     res.redirect(`/admin/${redirectPath}`);
@@ -114,6 +118,7 @@ router.post('/code/:year/:id', verifyToken, async function (req, res, next) {
       case "year10": lecture = await Year10.findById(id); break;
       case "year11": lecture = await Year11.findById(id); break;
       case "year12": lecture = await Year12.findById(id); break;
+      case "IG": lecture = await IG.findById(id); break;
     }
 
     // var codes = [1];
@@ -159,6 +164,7 @@ router.post('/updateCode/:year/:id', verifyToken, async function (req, res, next
       case "year10": redirectPath = "year10"; lecture = await Year10.findById(id); break;
       case "year11": redirectPath = "year11"; lecture = await Year11.findById(id); break;
       case "year12": redirectPath = "year12"; lecture = await Year12.findById(id); break;
+      case "IG": redirectPath= "IG"; lecture = await IG.findById(id); break;
     }
 
     // var codes = [1]
@@ -190,6 +196,7 @@ router.get('/printCodes/:year/:id', verifyToken, async function (req, res, next)
       case "year10": redirectPath = "year10"; lecture = await Year10.findById(id); break;
       case "year11": redirectPath = "year11"; lecture = await Year11.findById(id); break;
       case "year12": redirectPath = "year12"; lecture = await Year12.findById(id); break;
+      case "IG": redirectPath = "IG"; lecture = await IG.findById(id); break;
     }
     var codes = lecture.codes;
 
@@ -218,6 +225,7 @@ router.post('/addCodes/:year/:id', verifyToken, async function (req, res, next) 
       case "year10": redirectPath = "year10"; lecture = await Year10.findById(id); break;
       case "year11": redirectPath = "year11"; lecture = await Year11.findById(id); break;
       case "year12": redirectPath = "year12"; lecture = await Year12.findById(id); break;
+      case "IG": redirectPath = "IG"; lecture = await IG.findById(id); break;
     }
 
     var codes = lecture.codes;

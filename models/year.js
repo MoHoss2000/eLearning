@@ -20,5 +20,6 @@ module.exports = {
     Year9: mongoose.model("Year9", yearSchema),
     Year10: mongoose.model("Year10", yearSchema), 
     Year11: mongoose.model("Year11", yearSchema), 
-    Year12: mongoose.model("Year12", yearSchema)
+    Year12: mongoose.model("Year12", yearSchema),
+    IG: mongoose.model("IG", yearSchema)
 }
