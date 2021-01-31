@@ -1,0 +1,27 @@
+* {
+  direction: rtl;
+}
+body{
+  background: url(../images/Background.jpg);
+  height: 80vh;
+}
+/* iframe{
+  width: 100%;
+  height: 100%;
+} */
+#title{
+    color: white;
+    font-weight: 900;
+    font-size: 2rem;
+}
+
+button {
+  border: none;
+  outline: none;
+  background-color: rgb(12, 12, 128);
+  border-radius: 5px;
+  padding: 10px;
+  color: white;
+  font-weight: bold;
+  width: 150px;
+}

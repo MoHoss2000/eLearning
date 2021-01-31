@@ -81,7 +81,6 @@ function loadSearchForm(lectureID) {
   </div>`
 
     $('.searchButton').click(() => {
-        console.log("search");
         $.ajax({
             type: "POST",
             url: `/admin/code/${year}/${lectureID}`,

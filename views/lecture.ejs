@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>السعيد في اللغة العربية</title>
     <link rel="stylesheet" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" href="/stylesheets/bootstrap.min.css" />
+    <link rel="stylesheet" href="/stylesheets/lecture-style.css" />
     <style>
         body {
             height: 100vh;
@@ -13,7 +15,7 @@
 
         iframe {
             width: 100%;
-            height: 100%
+            height: 400px;
         }
 
         #timer {
@@ -22,6 +24,7 @@
             left: 2%;
             color: blue;
             font-size: 1.9rem;
+            direction: rtl;
         }
     </style>
 </head>
@@ -29,14 +32,35 @@
 <body>
 
     <h4 id="timer"></h4>
-    <iframe src='<%= link %> ' frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowfullscreen></iframe>
+    <div class="container">
+        <div class="title text-right blue mt-5">
+            <h3 id="title"></h3>
+        </div>
+        <div class="row mt-5">
+            <div class="col-md-9 col-sm-12">
+                <iframe src="https://player.vimeo.com/video/482744666" frameborder="0" allow="autoplay; fullscreen"
+                    allowfullscreen></iframe>
 
+            </div>
+            <div class="col-md-3 row mt-4">
+                <% for(var video of videos) { %>
 
+                    <div class="col-6 col-md-12 exam w-100 text-center py-2">
+                        <button class="btn<% videos.indexOf(video) %>">
+                            <%= video.title %>
+                        </button>
+                    </div>
+                    <% } %>
+            </div>
+        </div>
+    </div>
+
+    <script src="/javascripts/jquery-3.5.1.min.js"></script>
+    <script src="/javascripts/index.js"></script>
     <script>
+
+
         var difference = '<%= remainingTime %>';
-        console.log(difference);
         function countdownTimer() {
             let remaining = "Time's up!";
 
@@ -67,6 +91,19 @@
 
         setInterval(countdownTimer, 1000);
 
+
+
+        //Videos
+        $("button").click((e) => {
+            $("#title").html(e.target.innerHTML);
+
+            <% for (var video of videos) { %>
+
+            if (e.target.classList.value == "btn<%= videos.indexOf(video) %>") {
+                    $("iframe").attr("src", '<%= video.url %>');
+                }
+            <% } %>
+        });
     </script>
 </body>
 
