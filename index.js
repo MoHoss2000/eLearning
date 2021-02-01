@@ -13,7 +13,6 @@ const fs = require("fs");
 // const http = require('http');
 const https = require("https");
 // const flash = require('express-flash');
-
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
 var lecturesRouter = require("./routes/lectures");
@@ -51,7 +50,7 @@ app.set("view engine", "ejs");
 
 // app.use(logger('dev'));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 // app.use(flash());
 app.use(express.static(path.join(__dirname, "public")));
@@ -80,5 +79,6 @@ app.use("/error", errorRouter);
 //   res.status(err.status || 500);
 //   res.render("error");
 // });
+
 
 app.listen(PORT, () => console.log(`Server running on port: ${PORT}`));

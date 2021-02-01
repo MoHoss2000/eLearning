@@ -2,7 +2,6 @@ const mongoose = require("mongoose");
 
 const yearSchema = new mongoose.Schema({
     name: { type: String, required: true },
-    link: { type: String, required: true },
     time: { type: Number, default: 24 },
     codes: [
         {
@@ -11,6 +10,12 @@ const yearSchema = new mongoose.Schema({
             timeUsed: { type: Date, default: Date.now },
             timeCreated: {type: Date, default: Date.now },
             uuid: {type:String, default: ""}
+        }
+    ],
+    videos: [
+        {
+            url: { type: String, required: true},
+            title: {type: String, required: true},
         }
     ]
 

@@ -251,3 +251,13 @@ form .button button{
     background-color: lightgray;
 
 }
+.video{
+    flex-wrap: wrap;
+}
+.video .icon{
+    margin-top: 50px;
+}
+#addForm{
+    height: 100vh;
+    overflow-y: auto;
+}

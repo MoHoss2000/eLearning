@@ -5,12 +5,16 @@ const { Year9, Year10, Year11, Year12, IG } = require("../models/year");
 const mongoose = require("mongoose");
 var CodeGenerator = require("node-code-generator");
 const { Code } = require("bson");
+const { DBRef } = require("bson");
 var secret = "swsh23hjddnns";
+
+
 
 /* GET home page. */
 router.get("/", verifyToken, function (req, res, next) {
   res.redirect("/admin/year9");
 });
+
 
 router.get("/:year", verifyToken, async function (req, res, next) {
   var lectures;
@@ -35,9 +39,9 @@ router.get("/:year", verifyToken, async function (req, res, next) {
   res.render("admin", { lectures: lectures, year: req.params.year });
 });
 
-router.post("/add", verifyToken, async function (req, res, next) {
+router.post("/add", verifyToken,  async function (req, res, next) {
   var name = req.body.name;
-  var link = req.body.link;
+  var videos = req.body.videos;
   var grade = req.body.grade;
   var time = req.body.time;
   var codeNo = req.body.codes;
@@ -46,9 +50,9 @@ router.post("/add", verifyToken, async function (req, res, next) {
 
   newLecture = {
     name: name,
-    link: link,
     codes: codes,
     time: time,
+    videos: videos,
   };
 
   redirectPath = "";
@@ -75,9 +79,10 @@ router.post("/add", verifyToken, async function (req, res, next) {
         await IG.create(newLecture);
         break;
     }
-
+    
     res.redirect(`/admin/${redirectPath}`);
   } catch (e) {
+    console.log(e);
     res.status(401).send();
   }
 });

@@ -34,11 +34,11 @@
     <h4 id="timer"></h4>
     <div class="container">
         <div class="title text-right blue mt-5">
-            <h3 id="title"></h3>
+            <h3 id="title"><%= videos[0].title %> </h3>
         </div>
         <div class="row mt-5">
             <div class="col-md-9 col-sm-12">
-                <iframe src="https://player.vimeo.com/video/482744666" frameborder="0" allow="autoplay; fullscreen"
+                <iframe src= <%= videos[0].url %> frameborder="0" allow="autoplay; fullscreen"
                     allowfullscreen></iframe>
 
             </div>
@@ -46,7 +46,7 @@
                 <% for(var video of videos) { %>
 
                     <div class="col-6 col-md-12 exam w-100 text-center py-2">
-                        <button class="btn<% videos.indexOf(video) %>">
+                        <button class="btn<%= videos.indexOf(video) %>">
                             <%= video.title %>
                         </button>
                     </div>

@@ -33,12 +33,13 @@ router.post("/", async (req, res) => {
       expiresIn: "3h",
     });
 
-    //send the access token to the client inside a cookie
-    // res.cookie("jwt", accessToken, {
-    //   secure: true,
-    //   httpOnly: true,
-    //   expires: new Date(Date.now() + 10800000),
-    // });
+    // send the access token to the client inside a cookie
+    res.cookie("jwt", accessToken, {
+      secure: false,
+      httpOnly: true,
+      expires: new Date(Date.now() + 10800000),
+    });
+
     res.redirect("/admin");
   } catch (e) {
     console.log(e.message);
