@@ -204,16 +204,9 @@
   <script src="/javascripts/jquery-3.5.1.min.js"></script>
   <script src="/javascripts/admin.js"></script>
   <script>
-    document.querySelector("#delete-form").addEventListener("submit", (e) => {
-      e.preventDefault();
-      let ask = confirm("متأكد من أنك تريد حذف هذه المحاضرة ؟\nلن تتمكن من استعادتها مرة أخري");
-      if (ask == true) {
-        document.querySelector("#delete-form").submit();
-        return true
-      }
-
-      return false;
-    })
+    document.querySelector("#delete-form").onsubmit = (e) => {
+      return confirm("متأكد من أنك تريد حذف هذه المحاضرة ؟\nلن تتمكن من استعادتها مرة أخري");
+    }
   </script>
 </body>
 

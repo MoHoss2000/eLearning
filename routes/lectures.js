@@ -140,7 +140,12 @@ router.post("/:year/:id", async function (req, res, next) {
   }
 
   if (typeof remainingTime !== "undefined" && codeFound) {
-    res.render("lecture", { remainingTime: remainingTime, link, videos, files });
+    res.render("lecture", {
+      remainingTime: remainingTime,
+      link,
+      videos,
+      files,
+    });
   } else if (!codeFound && typeof remainingTime === "undefined") {
     res.redirect(`/error?message=الكود غير صحيح`);
   }
