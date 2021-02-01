@@ -81,7 +81,8 @@
                 </div>
 
                 <div class="icons d-flex">
-                  <form method="POST" id="delete-form" action="/admin/delete/<%= year %>/<%= lectures[i]._id %>  ">
+                  <form method="POST" action="/admin/delete/<%= year %>/<%= lectures[i]._id %>"
+                    onsubmit="return confirm(' متأكد من أنك تريد حذف هذه المحاضرة ؟\nلن تتمكن من استعادتها مرة أخري')">
                     <div class="delete">
                       <button type="submit" id="delete-btn">
                         <span class="iconify" data-icon="ic:baseline-delete" data-inline="false"></span>
@@ -204,9 +205,7 @@
   <script src="/javascripts/jquery-3.5.1.min.js"></script>
   <script src="/javascripts/admin.js"></script>
   <script>
-    document.querySelector("#delete-form").onsubmit = (e) => {
-      return confirm("متأكد من أنك تريد حذف هذه المحاضرة ؟\nلن تتمكن من استعادتها مرة أخري");
-    }
+
   </script>
 </body>
 
