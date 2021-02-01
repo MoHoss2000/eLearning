@@ -24,7 +24,7 @@
             left: 2%;
             color: blue;
             font-size: 1.9rem;
-            direction: rtl;
+            direction: ltr;
         }
     </style>
 </head>
@@ -34,11 +34,13 @@
     <h4 id="timer"></h4>
     <div class="container">
         <div class="title text-right blue mt-5">
-            <h3 id="title"><%= videos[0].title %> </h3>
+            <h3 id="title">
+                <%= videos[0].title %>
+            </h3>
         </div>
         <div class="row mt-5">
             <div class="col-md-9 col-sm-12">
-                <iframe src= <%= videos[0].url %> frameborder="0" allow="autoplay; fullscreen"
+                <iframe src=<%=videos[0].url %> frameborder="0" allow="autoplay; fullscreen"
                     allowfullscreen></iframe>
 
             </div>
