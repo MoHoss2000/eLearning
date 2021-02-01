@@ -42,7 +42,6 @@
             <div class="col-md-9 col-sm-12">
                 <iframe src=<%=videos[0].url %> frameborder="0" allow="autoplay; fullscreen"
                     allowfullscreen></iframe>
-
             </div>
             <div class="col-md-3 row mt-4">
                 <% for(var video of videos) { %>
@@ -53,6 +52,14 @@
                         </button>
                     </div>
                     <% } %>
+                    <% for(var file of files) { %>
+
+                        <div class="col-6 col-md-12 exam w-100 text-center py-2">
+                            <a href="<%= file.url %> "><button class="btn<%= videos.indexOf(file) %>">
+                                <%= file.title %>
+                            </button></a>
+                        </div>
+                        <% } %>
             </div>
         </div>
     </div>

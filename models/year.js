@@ -17,7 +17,13 @@ const yearSchema = new mongoose.Schema({
             url: { type: String, required: true},
             title: {type: String, required: true},
         }
-    ]
+    ],
+    files: [
+        {
+            url: { type: String},
+            title: {type: String},
+        }
+    ],
 
 })
 

@@ -34,18 +34,17 @@ $(".add").click(() => {
   $(".addContainer").css("height", "100%");
 });
 
-
-var index = 1;
+var indexVideo = 1;
 $("#videoAdding").click(() => {
-  index++;
-  
+  indexVideo++;
+
   var text = ` <div class="video d-flex w-40">
   <div class="w-50">
     <label for="" class="pt-4">videoUrl:</label>
     <input
       
       type="url"
-      name="videos[${index}][url]"
+      name="videos[${indexVideo}][url]"
       id="videoUrl"
       class="form-control"
     />
@@ -54,18 +53,31 @@ $("#videoAdding").click(() => {
     <label for="" class="pt-4">videoName:</label>
     <input
       type="text"
-      name="videos[${index}][title]"
+      name="videos[${indexVideo}][title]"
       id="videoName"
       class="form-control"
     />
   </div>
 </div>`;
 
-console.log(index);
-$('#addingVideos').append(text);
+  $("#addingVideos").append(text);
+});
 
+var indexFile = 1;
+$("#fileAdding").click(() => {
+  indexFile++;
 
+  var text = `  <div class="file d-flex w-40">
+  <div class="w-50">
+    <label for="" class="pt-4">fileUrl:</label>
+    <input type="url" name="files[${indexFile}][url]" id="fileUrl" class="form-control" />
+  </div>
+  <div class="w-40">
+    <label for="" class="pt-4">fileName:</label>
+    <input type="text" name="files[${indexFile}][title]" id="fileName" class="form-control" />
+  </div>`;
 
+  $("#addingFiles").append(text);
 });
 
 function closeAllForms() {
