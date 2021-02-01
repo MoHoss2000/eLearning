@@ -8,13 +8,10 @@ const { Code } = require("bson");
 const { DBRef } = require("bson");
 var secret = "swsh23hjddnns";
 
-
-
 /* GET home page. */
 router.get("/", verifyToken, function (req, res, next) {
   res.redirect("/admin/year9");
 });
-
 
 router.get("/:year", verifyToken, async function (req, res, next) {
   var lectures;
@@ -39,7 +36,7 @@ router.get("/:year", verifyToken, async function (req, res, next) {
   res.render("admin", { lectures: lectures, year: req.params.year });
 });
 
-router.post("/add", verifyToken,  async function (req, res, next) {
+router.post("/add", verifyToken, async function (req, res, next) {
   var name = req.body.name;
   var videos = req.body.videos;
   var grade = req.body.grade;
@@ -79,7 +76,7 @@ router.post("/add", verifyToken,  async function (req, res, next) {
         await IG.create(newLecture);
         break;
     }
-    
+
     res.redirect(`/admin/${redirectPath}`);
   } catch (e) {
     console.log(e);
@@ -236,7 +233,6 @@ router.post(
     var code = req.body.code;
     var used = req.body.used;
     var redirectPath = "";
-
 
     try {
       switch (grade) {
