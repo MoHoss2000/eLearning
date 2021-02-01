@@ -5,6 +5,14 @@ body,html{
     direction: rtl;
 }   
 
+.navbar-brand{
+  height: 150px;
+  width: 20%;
+}
+.logo{
+  width: 100%;
+  height: 100%;
+}
 .navbar{
   background-color: transparent !important;
 }
@@ -139,5 +147,7 @@ nav ul {
   }
   .navbar-brand{
     font-size: 1.3rem;
+    text-align: left;
+    width: 35%;
 }
-}
+

@@ -69,9 +69,6 @@
                 </div>
 
                 <div class="info">
-                  <div><b>counter:</b>
-                    <%= lectures[i].counter %>
-                  </div>
                   <div><b>time:</b>
                     <%= lectures[i].time %>
                   </div>
@@ -180,6 +177,22 @@
           </div>
         </div>
         <div id="addingVideos"></div>
+        <div class="file d-flex w-40">
+          <div class="w-50">
+            <label for="" class="pt-4">fileUrl:</label>
+            <input type="url" name="files[0][url]" id="fileUrl" class="form-control" />
+          </div>
+          <div class="w-40">
+            <label for="" class="pt-4">fileName:</label>
+            <input type="text" name="files[0][title]" id="fileName" class="form-control" />
+          </div>
+          <div class="icon text-center W-20" id="fileAdding">
+            <button type="button" class="btn mt-5">
+              <span class="iconify text-center" data-icon="ant-design:plus-outlined" data-inline="false"></span>
+            </button>
+          </div>
+        </div>
+        <div id="addingFiles"></div>
         <div class="button">
           <button type="submit" class="btn mt-4 bg-blue">Send</button>
         </div>

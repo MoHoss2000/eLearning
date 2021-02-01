@@ -42,6 +42,7 @@ router.get("/:year", verifyToken, async function (req, res, next) {
 router.post("/add", verifyToken,  async function (req, res, next) {
   var name = req.body.name;
   var videos = req.body.videos;
+  var files = req.body.files;
   var grade = req.body.grade;
   var time = req.body.time;
   var codeNo = req.body.codes;
@@ -53,6 +54,7 @@ router.post("/add", verifyToken,  async function (req, res, next) {
     codes: codes,
     time: time,
     videos: videos,
+    files: files,
   };
 
   redirectPath = "";
