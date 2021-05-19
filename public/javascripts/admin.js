@@ -3,58 +3,101 @@ var lectureID;
 var lecture;
 var button = document.getElementById("button");
 
-$('#addLecture').click(() => {
-    $('.lightboxContainer').css("top", "0%");
-    $('.lightboxContainer').css("height", "100%");
-})
+$("#addLecture").click(() => {
+  $(".lightboxContainer").css("top", "0%");
+  $(".lightboxContainer").css("height", "100%");
+});
 
-$('.exit').click(() => {
-    $('.lightboxContainer').css("top", "-200%");
-    $('.lightboxContainer').css("height", "0");
+$(".exit").click(() => {
+  $(".lightboxContainer").css("top", "-200%");
+  $(".lightboxContainer").css("height", "0");
 
-    $('.editFormContainer').css("top", "-200%");
-    $('.editFormContainer').css("height", "0");
+  $(".editFormContainer").css("top", "-200%");
+  $(".editFormContainer").css("height", "0");
 
-    $('.searchContainer').css("top", "-200%");
-    $('.searchContainer').css("height", "0");
-})
+  $(".searchContainer").css("top", "-200%");
+  $(".searchContainer").css("height", "0");
+});
 
-$('.edit').click(() => {
-    $('.editFormContainer').css("top", "0%");
-    $('.editFormContainer').css("height", "100%");
-})
+$(".edit").click(() => {
+  $(".editFormContainer").css("top", "0%");
+  $(".editFormContainer").css("height", "100%");
+});
 
-$('.serach').click(() => {
-    $('.searchContainer').css("top", "0%");
-    $('.searchContainer').css("height", "100%");
+$(".serach").click(() => {
+  $(".searchContainer").css("top", "0%");
+  $(".searchContainer").css("height", "100%");
+});
 
-})
+$(".add").click(() => {
+  $(".addContainer").css("top", "0%");
+  $(".addContainer").css("height", "100%");
+});
 
-$('.add').click(() => {
-    $('.addContainer').css("top", "0%");
-    $('.addContainer').css("height", "100%");
-})
+var indexVideo = 1;
+$("#videoAdding").click(() => {
+  indexVideo++;
 
+  var text = ` <div class="video d-flex w-40">
+  <div class="w-50">
+    <label for="" class="pt-4">videoUrl:</label>
+    <input
+      
+      type="url"
+      name="videos[${indexVideo}][url]"
+      id="videoUrl"
+      class="form-control"
+    />
+  </div>
+  <div class="w-40">
+    <label for="" class="pt-4">videoName:</label>
+    <input
+      type="text"
+      name="videos[${indexVideo}][title]"
+      id="videoName"
+      class="form-control"
+    />
+  </div>
+</div>`;
 
+  $("#addingVideos").append(text);
+});
+
+var indexFile = 1;
+$("#fileAdding").click(() => {
+  indexFile++;
+
+  var text = `  <div class="file d-flex w-40">
+  <div class="w-50">
+    <label for="" class="pt-4">fileUrl:</label>
+    <input type="url" name="files[${indexFile}][url]" id="fileUrl" class="form-control" />
+  </div>
+  <div class="w-40">
+    <label for="" class="pt-4">fileName:</label>
+    <input type="text" name="files[${indexFile}][title]" id="fileName" class="form-control" />
+  </div>`;
+
+  $("#addingFiles").append(text);
+});
 
 function closeAllForms() {
+  $(".lightboxContainer").css("top", "-200%");
+  $(".lightboxContainer").css("height", "0");
 
-    $('.lightboxContainer').css("top", "-200%");
-    $('.lightboxContainer').css("height", "0");
+  $(".editFormContainer").css("top", "-200%");
+  $(".editFormContainer").css("height", "0");
 
-    $('.editFormContainer').css("top", "-200%");
-    $('.editFormContainer').css("height", "0");
+  $(".searchContainer").css("top", "-200%");
+  $(".searchContainer").css("height", "0");
 
-    $('.searchContainer').css("top", "-200%");
-    $('.searchContainer').css("height", "0");
-
-    $('.addContainer').css("top", "-200%");
-    $('.addContainer').css("height", "0");
+  $(".addContainer").css("top", "-200%");
+  $(".addContainer").css("height", "0");
 }
 
-
 function loadSearchForm(lectureID) {
-    document.getElementById("searchItem").innerHTML = `<div class="exit" onclick="closeAllForms()">
+  document.getElementById(
+    "searchItem"
+  ).innerHTML = `<div class="exit" onclick="closeAllForms()">
     <span class="iconify" data-icon="bx:bxs-x-circle" data-inline="false"
       style="color: rgba(17, 17, 113, 1)"></span>
   </div>
@@ -78,36 +121,34 @@ function loadSearchForm(lectureID) {
         <input type="submit" class="btn mt-1" value="Update " />
       </form>
     </div>
-  </div>`
+  </div>`;
 
-    $('.searchButton').click(() => {
-        console.log("search");
-        $.ajax({
-            type: "POST",
-            url: `/admin/code/${year}/${lectureID}`,
-            data: { code: document.getElementById('searchTerm').value },
-            dataType: 'json',
-            success: function (response, status) {
-                if (response['message'] == 'Success') {
-                    document.getElementById('changedCode').value = document.getElementById('searchTerm').value;
-                    document.getElementById('code').value = response['used']
-                    $('#searchForm').css("display", "block");
-                }
-                else alert('Code not found');
-            },
-            error: function (response) {
-                alert("Server error");
-            },
-        })
-
-
-
-    })
+  $(".searchButton").click(() => {
+    $.ajax({
+      type: "POST",
+      url: `/admin/code/${year}/${lectureID}`,
+      data: { code: document.getElementById("searchTerm").value },
+      dataType: "json",
+      success: function (response, status) {
+        if (response["message"] == "Success") {
+          document.getElementById(
+            "changedCode"
+          ).value = document.getElementById("searchTerm").value;
+          document.getElementById("code").value = response["used"];
+          $("#searchForm").css("display", "block");
+        } else alert("Code not found");
+      },
+      error: function (response) {
+        alert("Server error");
+      },
+    });
+  });
 }
 
 function loadEditForm(lecture) {
-
-    document.getElementById("editFormItem").innerHTML = `<div class="exit" onclick="closeAllForms()">
+  document.getElementById(
+    "editFormItem"
+  ).innerHTML = `<div class="exit" onclick="closeAllForms()">
     <span class="iconify" data-icon="bx:bxs-x-circle" data-inline="false"
       style="color: rgba(17, 17, 113, 1)"></span>
   </div>
@@ -129,11 +170,11 @@ function loadEditForm(lecture) {
         Update
       </button>
     </div>
-  </form>`
+  </form>`;
 }
 
 function loadAddForm(lectureID) {
-    document.getElementById("addItem").innerHTML = `
+  document.getElementById("addItem").innerHTML = `
     <div class="exit" onclick="closeAllForms()">
     <span class="iconify" data-icon="bx:bxs-x-circle" data-inline="false"
       style="color: rgba(17, 17, 113, 1)"></span>

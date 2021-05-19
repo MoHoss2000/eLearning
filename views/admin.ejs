@@ -12,12 +12,10 @@
 
 <script>
   year = "<%= year %>";
-  // var lecture = { _id: "javascript" }
+    // var lecture = { _id: "javascript" }
 </script>
 
 <body>
-
-
   <nav class="navbar navbar-expand-sm navbar-light bg-maroon">
     <a class="navbar-brand whiteColor" href="#">السعيد في اللغة العربية</a>
     <div class="navbar-expand-sm navbar-collapse" id="">
@@ -52,73 +50,71 @@
   </section>
 
   <main class="lectures container mt-5">
-
     <div class="row">
-      <% if(lectures.length == 0) {%>
-      <div class="alert alert-info" role="alert">No lectures available</div>
-      <% } %> <% for(var i=0; i < lectures.length; i++) { %>
+      <% if(lectures.length==0) {%>
+        <div class="alert alert-info" role="alert">No lectures available</div>
+        <% } %>
+          <% for(var i=0; i < lectures.length; i++) { %>
 
+            <div class="col-md-4 cards p-3">
+              <div class="bg-white cardsbg p-4">
+                <div onclick="loadSearchForm('<%=lectures[i]._id%>')" class="serach d-flex">
+                  <span class="iconify" data-icon="dashicons:search" data-inline="false"></span>
+                </div>
 
-      <div class="col-md-4 cards p-3">
-        <div class="bg-white cardsbg p-4">
-          <div onclick="loadSearchForm('<%=lectures[i]._id%>')" class="serach d-flex">
-            <span class="iconify" data-icon="dashicons:search" data-inline="false"></span>
-          </div>
+                <div class="lectureName text-center">
+                  <h3>
+                    <%=lectures[i].name%>
+                  </h3>
+                </div>
 
-          <div class="lectureName text-center">
-            <h3><%=lectures[i].name%></h3>
-          </div>
+                <div class="info">
+                  <div><b>time:</b>
+                    <%= lectures[i].time %>
+                  </div>
+                  <div><b>count:</b>
+                    <%= lectures[i].codes.length %>
+                  </div>
+                  <div><b>Used Codes:</b>
+                    <%= lectures[i].codes.filter(c=> c.used).length %>
+                  </div>
+                </div>
 
-          <div class="info">
-            <div><b>link:</b> <%= lectures[i].link %></div>
-            <div><b>time:</b> <%= lectures[i].time %></div>
-            <div><b>count:</b> <%= lectures[i].codes.length %></div>
-          </div>
+                <div class="icons d-flex">
+                  <form method="POST" action="/admin/delete/<%= year %>/<%= lectures[i]._id %>"
+                    onsubmit="return confirm(' متأكد من أنك تريد حذف هذه المحاضرة ؟\nلن تتمكن من استعادتها مرة أخري')">
+                    <div class="delete">
+                      <button type="submit" id="delete-btn">
+                        <span class="iconify" data-icon="ic:baseline-delete" data-inline="false"></span>
+                      </button>
+                    </div>
+                  </form>
+                  <div class="edit" onclick="loadEditForm(<%=JSON.stringify(lectures[i]) %>)">
+                    <button>
+                      <span class="iconify" data-icon="clarity:edit-solid" data-inline="false"></span>
+                    </button>
+                  </div>
 
-
-
-          <div class="icons d-flex">
-            <form method="POST" action="/admin/delete/<%= year %>/<%= lectures[i]._id %>  ">
-              <div class="delete">
-                <button type="submit">
-                  <span class="iconify" data-icon="ic:baseline-delete" data-inline="false"></span>
-                </button>
+                  <div class="add" onclick="loadAddForm('<%= lectures[i]._id%>')">
+                    <button type="button">
+                      <span class="iconify" data-icon="carbon:add-filled" data-inline="false"></span>
+                    </button>
+                  </div>
+                  <div class="download">
+                    <button type="button">
+                      <a target="_blank" href="/admin/printCodes/<%= year %>/<%= lectures[i]._id %> ">
+                        <span class="iconify" data-icon="carbon:download" data-inline="false"
+                          style="color: blue"></span>
+                      </a>
+                    </button>
+                  </div>
+                </div>
               </div>
-            </form>
-            <div class="edit" onclick='loadEditForm(<%=JSON.stringify(lectures[i]) %>)'>
-              <button>
-                <span class="iconify" data-icon="clarity:edit-solid" data-inline="false"></span>
-              </button>
             </div>
-  
-            <div class="add" onclick="loadAddForm('<%= lectures[i]._id%>')">
-              <button type="button">
-                <span class="iconify" data-icon="carbon:add-filled" data-inline="false"></span>
-              </button>
-            </div>
-            <div class="download">
-              <button type="button">
-                <a target="_blank" href="/admin/printCodes/<%= year %>/<%= lectures[i]._id %> ">
-                  <span class="iconify" data-icon="carbon:download" data-inline="false" style="color: blue"></span>
-                </a>
-              </button>
-            </div>
-          </div>
 
-
-
-
-        </div>
-      </div>
-
-      <% } %>
-    </div>
-
-
+            <% } %>
     </div>
   </main>
-
-
 
   <section id="editFormContainer" class="editFormContainer d-flex justify-content-center align-items-center">
     <div id="editFormItem" class="editFormItem"></div>
@@ -142,7 +138,7 @@
         <span class="iconify" data-icon="bx:bxs-x-circle" data-inline="false"
           style="color: rgba(17, 17, 113, 1)"></span>
       </div>
-      <form method="POST" action="/admin/add/" class="container p-4">
+      <form method="POST" action="/admin/add" id="addForm" class="container p-4">
         <div class="grade">
           <label for="" class="">Grade:</label>
           <select required class="form-control" id="grade" name="grade">
@@ -158,18 +154,46 @@
           <label for="" class="pt-4">Name:</label>
           <input required type="text" name="name" id="lectName" class="form-control" />
         </div>
-        <div class="link">
-          <label for="" class="pt-4">Link:</label>
-          <input required type="url" name="link" id="lectLink" class="form-control" />
-        </div>
         <div class="time">
           <label for="" class="pt-4">Time:</label>
           <input required type="number" name="time" id="lectTime" class="form-control" />
         </div>
         <div class="codes">
           <label for="" class="pt-4">Codes:</label>
-          <input required type="number" name="codes" id="lectCodes" class="form-control" />
+          <input type="number" name="codes" id="lectCodes" class="form-control" />
         </div>
+        <div class="video d-flex w-40">
+          <div class="w-50">
+            <label for="" class="pt-4">videoUrl:</label>
+            <input type="url" name="videos[0][url]" id="videoUrl" class="form-control" />
+          </div>
+          <div class="w-40">
+            <label for="" class="pt-4">videoName:</label>
+            <input type="text" name="videos[0][title]" id="videoName" class="form-control" />
+          </div>
+          <div class="icon text-center W-20" id="videoAdding">
+            <button type="button" class="btn">
+              <span class="iconify text-center" data-icon="ant-design:plus-outlined" data-inline="false"></span>
+            </button>
+          </div>
+        </div>
+        <div id="addingVideos"></div>
+        <div class="file d-flex w-40">
+          <div class="w-50">
+            <label for="" class="pt-4">fileUrl:</label>
+            <input type="url" name="files[0][url]" id="fileUrl" class="form-control" />
+          </div>
+          <div class="w-40">
+            <label for="" class="pt-4">fileName:</label>
+            <input type="text" name="files[0][title]" id="fileName" class="form-control" />
+          </div>
+          <div class="icon text-center W-20" id="fileAdding">
+            <button type="button" class="btn mt-5">
+              <span class="iconify text-center" data-icon="ant-design:plus-outlined" data-inline="false"></span>
+            </button>
+          </div>
+        </div>
+        <div id="addingFiles"></div>
         <div class="button">
           <button type="submit" class="btn mt-4 bg-blue">Send</button>
         </div>
@@ -180,6 +204,9 @@
   <script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
   <script src="/javascripts/jquery-3.5.1.min.js"></script>
   <script src="/javascripts/admin.js"></script>
+  <script>
+
+  </script>
 </body>
 
 </html>

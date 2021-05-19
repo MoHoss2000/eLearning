@@ -31,7 +31,7 @@
         <div class="navbar-expand-sm navbar-collapse" id="">
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                 <li class="">
-                    <a class="nav-link" href="../">
+                    <a class="nav-link" href="/">
                         <button class="btn bg-blue ">الرئيسية</button>
                     </a>
                 </li>
@@ -52,8 +52,8 @@
                 <% 
                      for(var i=0; i < lectures.length; i++) { %>
 
-                <div onclick="requiredLecture = allLectures[<%=i%>]" class="col-md-12 bt btn  col-5 mx-1 text-center mt-2">
-                    <span class=""><%= lectures[i].name  %> </span>
+                <div onclick="requiredLecture = allLectures[ <%=i%> ]" class="col-md-12 bt btn  col-5 mx-1 text-center mt-2">
+                    <span><%= lectures[i].name  %> </span>
                 </div>
 
                 <% }} %>
